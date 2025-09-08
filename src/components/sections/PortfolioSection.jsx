@@ -25,7 +25,7 @@ export function PortfolioSection() {
           <img
             alt="Aerial view of modern resort with pool"
             className="w-full h-96 object-cover mb-8"
-            src="https://images.unsplash.com/photo-1561811358-21aef14f0551"
+            src="https://res.cloudinary.com/dzwxkhkvi/image/upload/v1757333906/photo-1561811358-21aef14f0551_h4jzyk.jpg"
           />
           <div className="text-center">
             <Button
@@ -60,7 +60,7 @@ export function PortfolioSection() {
             <img
               alt="Modern tropical villa with palm trees"
               className="w-full h-80 object-cover"
-              src="https://images.unsplash.com/photo-1676615026612-8d7642335476"
+              src="https://res.cloudinary.com/dzwxkhkvi/image/upload/v1757333950/photo-1676615026612-8d7642335476_okr0up.jpg"
             />
           </div>
         </motion.div>

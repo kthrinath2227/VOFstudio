@@ -9,7 +9,7 @@ export function HeroSection({ scrollToSection }) {
         <img
           alt="Modern architectural house with pool at night"
           className="w-full h-full object-cover"
-          src="https://images.unsplash.com/photo-1599777560450-e462cffc5368"
+          src="https://res.cloudinary.com/dzwxkhkvi/image/upload/v1757333796/photo-1599777560450-e462cffc5368_akzbvy.jpg"
         />
         <div className="absolute inset-0 bg-gray-900/40"></div>
       </div>
