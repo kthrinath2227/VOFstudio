@@ -32,7 +32,7 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cccccc; /* Medium gray thumb */
+  background: #000000; /* Medium gray thumb */
   border-radius: 2px;
 }
 

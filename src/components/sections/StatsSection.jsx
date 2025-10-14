@@ -1,41 +1,91 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 
 export function StatsSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+
+  const stats = [
+    { number: 2090, label: 'Finished Projects' },
+    { number: 500, label: 'Happy Customers' },
+    { number: 10000, label: 'Design & Styling Hours' },
+  ];
+
+  const [displayNumbers, setDisplayNumbers] = useState(stats.map(() => 0));
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    const duration = 2000; // total animation time (ms)
+    const intervalTime = 50; // how fast digits roll
+    const steps = duration / intervalTime;
+
+    const interval = setInterval(() => {
+      setDisplayNumbers(prev =>
+        prev.map((_, i) => {
+          // Random rolling digits while animating
+          return Math.floor(Math.random() * stats[i].number);
+        })
+      );
+    }, intervalTime);
+
+    // After animation completes, show actual numbers
+    const timeout = setTimeout(() => {
+      clearInterval(interval);
+      setDisplayNumbers(stats.map(s => s.number));
+    }, duration);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeout);
+    };
+  }, [isInView]);
+
   return (
-    <section id="stats" className="min-h-screen bg-gray-900 text-white flex items-center ml-20">
-      <div className="max-w-7xl mx-auto px-6 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <section
+      id="stats"
+      ref={ref}
+      className="bg-black text-white flex items-center md:ml-20 py-16 px-6"
+    >
+      <div className="w-full max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+          {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
+            className="text-center lg:text-left"
           >
-            <div className="text-9xl font-light text-gray-600 mb-8">02</div>
-            <h2 className="text-4xl font-light mb-4">SOME INTERESTING</h2>
-            <h3 className="text-4xl font-normal mb-12">FACTS</h3>
+            <div className="text-6xl md:text-8xl font-bold text-gray-600 mb-4 hidden md:block">
+              02
+            </div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-2">
+              SOME INTERESTING
+            </h2>
+            <div className="w-12 sm:w-16 h-1 bg-white mx-auto lg:mx-0 mb-3"></div>
+            <h3 className="text-3xl sm:text-4xl font-bold mb-8">FACTS</h3>
           </motion.div>
 
+          {/* Right Stats with rolling effect */}
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="text-center">
-              <div className="text-5xl md:text-6xl font-light mb-4">2090</div>
-              <p className="text-gray-400">Finished projects</p>
-            </div>
-            <div className="text-center">
-              <div className="text-5xl md:text-6xl font-light mb-4">500</div>
-              <p className="text-gray-400">Happy customers</p>
-            </div>
-            <div className="text-center">
-              <div className="text-5xl md:text-6xl font-light mb-4">10000</div>
-              <p className="text-gray-400">Photoshoot & Editing hours</p>
-            </div>
+            {stats.map((stat, i) => (
+              <div key={i}>
+                <div className="text-4xl sm:text-5xl md:text-6xl font-light mb-2 tabular-nums">
+                  {displayNumbers[i].toLocaleString()}
+                </div>
+                <p className="text-gray-400 text-sm sm:text-base">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
           </motion.div>
         </div>
       </div>

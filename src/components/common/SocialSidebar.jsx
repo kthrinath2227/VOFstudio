@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Phone, Facebook, Instagram, Youtube, Twitter, Send, PinOff as PinIcon } from 'lucide-react';
+import { Phone, MessageCircle, Facebook, Instagram, Youtube, Twitter } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 
 export function SocialSidebar() {
@@ -13,28 +13,42 @@ export function SocialSidebar() {
   };
 
   return (
-    <div className="fixed left-0 top-0 h-full w-20 flex flex-col items-center justify-center bg-gray-900 z-40 text-gray-400">
-      <div className="flex flex-col space-y-4">
-        <span className="text-xs tracking-widest transform -rotate-90 origin-center mb-8 text-gray-400 absolute left-1/2 -translate-x-1/2 top-40">HOME</span>
-        <div className="w-px h-20 bg-gray-600 mx-auto mb-40"></div> {/* Adjusted spacing */}
+    <div className="fixed left-0 top-0 h-full w-20 flex flex-col justify-between items-center bg-black z-40 text-white py-6">
+      {/* Top Section */}
+      <div className="flex flex-col items-center space-y-4">
+        
+        <span className="m-5 text-xs tracking-widest transform -rotate-90 origin-center text-gray-400 mt-40">
+          HOME
+        </span>
+
+        {/* Divider Line */}
+       
+      </div>
+     
+      
+      
+
+      {/* Bottom Icons */}
+      <div className="flex flex-col items-center space-y-4 mb-6">
+         <div className="w-10 h-[1px] bg-gray-600" />
+         <div className="w-7 h-[1px] bg-gray-600" />
         {[
           { icon: Phone, label: 'WhatsApp' },
           { icon: Facebook, label: 'Facebook' },
           { icon: Youtube, label: 'YouTube' },
           { icon: Instagram, label: 'Instagram' },
           { icon: Twitter, label: 'Twitter' },
-          { icon: Send, label: 'Telegram' },
-          { icon: PinIcon, label: 'Pinterest' }
+          { icon: MessageCircle, label: 'MessageCircle' },
         ].map(({ icon: Icon, label }, index) => (
           <motion.button
             key={label}
             onClick={handleSocialClick}
-            className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white transition-colors"
+            className="w-8 h-8 text-white hover:text-gray-400 transition-colors"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: index * 0.1 }}
           >
-            <Icon size={16} />
+            <Icon size={18} />
           </motion.button>
         ))}
       </div>

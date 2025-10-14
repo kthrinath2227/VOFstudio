@@ -49,17 +49,23 @@ function App() {
         <meta property="og:description" content="Professional photography studio specializing in creative photoshoots, architectural photography, and visual storytelling. Bringing your vision to life through innovative photography." />
       </Helmet>
 
-      <div className="min-h-screen bg-gray-50 text-gray-800 overflow-x-hidden pt-16">
-        <Navbar />
-        <SocialSidebar />
-        <HeroSection scrollToSection={scrollToSection} />
-        <AboutSection />
-        <StatsSection />
-        <PortfolioSection />
-        <ContactSection />
-        <Footer scrollToSection={scrollToSection} />
-        <Toaster />
-      </div>
+      <div className="min-h-screen bg-gray-50 text-gray-800 overflow-x-hidden">
+  <Navbar />
+  
+  {/* Hide sidebar on mobile */}
+  <div className="hidden md:block">
+    <SocialSidebar />
+  </div>
+
+  <HeroSection scrollToSection={scrollToSection} />
+  <AboutSection />
+  <StatsSection />
+  <PortfolioSection />
+  <ContactSection />
+  <Footer scrollToSection={scrollToSection} />
+  <Toaster />
+</div>
+
     </>
   );
 }
