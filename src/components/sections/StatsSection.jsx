@@ -45,7 +45,7 @@ export function StatsSection() {
     <section
       id="stats"
       ref={ref}
-      className="bg-black text-white flex items-center md:ml-20 py-16 px-6"
+      className="bg-black text-white flex items-center md:ml-20 py-16 px-10"
     >
       <div className="w-full max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

@@ -174,8 +174,8 @@ export function PortfolioSection() {
   // }, [isPlaying, selectedProject]);
 
   return (
-    <section id="portfolio" className="bg-white text-gray-900 md:ml-20">
-      <div className="max-w-7xl mx-auto px-6 py-24">
+    <section id="portfolio" className="bg-white text-gray-900 md:ml-24">
+      <div className="max-w-7xl mx-auto px-10 py-24">
         {/* --- Header --- */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-24">
           <div className="text-right">

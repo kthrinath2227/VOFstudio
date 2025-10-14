@@ -54,16 +54,21 @@ export function Navbar() {
 <nav className="bg-black w-[100%] sm:w-[70%] fixed top-0 left-0 right-0 z-50 backdrop-blur-lg text-white border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* Left - Logo */}
-          <motion.div
-            className="text-2xl font-light tracking-wider cursor-pointer flex-shrink-0"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            onClick={() => handleNavClick("hero")}
-          >
-            <span className="text-gray-100 ml-2">VOF</span>
-            <span className="text-gray-400 ml-1 text-sm">STUDIO</span>
-          </motion.div>
+         <motion.div
+  className="text-2xl font-light tracking-wider cursor-pointer flex-shrink-0 text-center"
+  style={{ fontFamily: 'CyrillicBodoniCondensed' }}
+  initial={{ opacity: 0, x: -20 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.6 }}
+  onClick={() => handleNavClick("hero")}
+>
+  <span  style={{
+      transform: 'scaleY(1.4) scaleX(1.1)',  
+      display: 'inline-block',
+    }} className="text-white block">VOF</span>
+  <span className="text-white text-[8px] block -mt-3">DESIGN STUDIO</span>
+</motion.div>
+
 
           {/* Center - Navigation Tabs */}
           <div className="hidden md:flex flex-1 justify-center space-x-8">
@@ -93,11 +98,20 @@ export function Navbar() {
           </div>
 
           {/* Right - Contact + Quote */}
-          <div className="hidden md:flex items-center space-x-6 flex-shrink-0">
+          <div className="hidden md:flex items-center flex-shrink-0">
+          <motion.button
+                    
+                     className="w-4 h-4 border border-gray-400 flex items-center justify-center hover:border-gray-800 transition-colors"
+                     initial={{ opacity: 0, x: 20 }}
+                     animate={{ opacity: 1, x: 0 }}
+                     transition={{ duration: 0.6 }}
+                   >
+                     <div className="w-2 h-2 bg-gray-800"></div>
+                   </motion.button>
        
             <Button
               onClick={() => setIsModalOpen(true)}
-              className="bg-gray-100 text-black hover:bg-gray-300 text-sm font-semibold px-4 py-2"
+              className="text-gray-400 hover:text-white text-sm font-semibold px-4 py-2"
             >
               Get Free Quote
             </Button>
