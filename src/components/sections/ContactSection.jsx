@@ -146,7 +146,7 @@ export function ContactSection() {
               }}
               className="text-base text-sm"
             >
-              +91 999 8888 999
+              +91 8106257980
             </p>
           </div>
 
@@ -169,7 +169,7 @@ export function ContactSection() {
               }}
               className="text-base text-sm uppercase"
             >
-              Info@INCLINEDSTUDIO.COM
+              VOFDESIGNSTUDIO@GMAIL.COM
             </p>
           </div>
 
