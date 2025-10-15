@@ -13,7 +13,7 @@ export function AboutSection() {
   };
 
   return (
-    <section id="about" className="min-h-screen bg-gray-100 text-gray-800 relative">
+    <section id="about" className="h-[30%] bg-gray-100 text-gray-800 relative">
       {/* 👆 Added 'relative' so absolute children are positioned within this section */}
       
       <div className="w-full max-w-6xl mx-auto px-8 py-20">
@@ -57,7 +57,7 @@ export function AboutSection() {
 
           <Button
             variant="outline"
-            className="border-gray-800 text-gray-800 hover:bg-black hover:text-white"
+            className="border-gray-800 bold text-black hover:bg-black hover:text-white"
             onClick={handleButtonClick}
           >
             View Our Portfolio
@@ -66,7 +66,7 @@ export function AboutSection() {
 
         {/* 🔸 Section-local bottom-right 01 */}
         <motion.div
-          className="absolute bottom-10 right-10 inline-block"
+          className="absolute bottom-20 right-10 inline-block"
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}

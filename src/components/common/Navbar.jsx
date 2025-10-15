@@ -10,13 +10,20 @@ export function Navbar() {
 
   const navItems = [
     { label: "HOME", id: "hero" },
-    { label: "ABOUT US", id: "about" },
-    { label: "STATS", id: "stats" },
     { label: "PORTFOLIO", id: "portfolio" },
+    { label: "VIDEOS", id: "youtube" },
+    { label: "ABOUT US", id: "about" },
     { label: "CONTACT", id: "contact" },
   ];
 
+  // ✅ Handle navigation click
   const handleNavClick = (id) => {
+    if (id === "youtube") {
+      window.open("https://www.youtube.com/", "_blank"); // Open YouTube
+      setIsMobileMenuOpen(false);
+      return;
+    }
+
     const section = document.getElementById(id);
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
@@ -25,6 +32,7 @@ export function Navbar() {
     setIsMobileMenuOpen(false);
   };
 
+  // ✅ Handle scroll to highlight active section
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY + window.innerHeight / 2;
@@ -50,36 +58,35 @@ export function Navbar() {
 
   return (
     <>
-      {/* ✅ NAVBAR */}
-<nav className="bg-black w-[100%] sm:w-[70%] fixed top-0 left-0 right-0 z-50 backdrop-blur-lg text-white border-b border-gray-800">
+      {/* NAVBAR */}
+      <nav className="bg-black w-[100%] sm:w-[70%] fixed top-0 left-0 right-0 z-50 backdrop-blur-lg text-white border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          {/* Left - Logo */}
-         <motion.div
-  className="text-2xl font-light tracking-wider cursor-pointer flex-shrink-0 text-center"
- style={{ fontFamily: "'CyrillicBodoniCondensed', serif" }}
-  initial={{ opacity: 0, x: -20 }}
-  animate={{ opacity: 1, x: 0 }}
-  transition={{ duration: 0.6 }}
-  onClick={() => handleNavClick("hero")}
->
-  <span  style={{
-      transform: 'scaleY(1.4) scaleX(1.1)',  
-      display: 'inline-block',
-    }} className="text-white block">VOF</span>
-  <span className="text-white text-[8px] block -mt-3">DESIGN STUDIO</span>
-</motion.div>
+          {/* Logo */}
+          <motion.div
+            className="text-2xl font-light tracking-wider cursor-pointer flex-shrink-0 text-center"
+            style={{ fontFamily: "'CyrillicBodoniCondensed', serif" }}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            onClick={() => handleNavClick("hero")}
+          >
+            <span
+              style={{ transform: "scaleY(1.4) scaleX(1.1)", display: "inline-block" }}
+              className="text-white block"
+            >
+              VOF
+            </span>
+            <span className="text-white text-[8px] block -mt-3">DESIGN STUDIO</span>
+          </motion.div>
 
-
-          {/* Center - Navigation Tabs */}
+          {/* Navigation Tabs */}
           <div className="hidden md:flex flex-1 justify-center space-x-8">
             {navItems.map((item, index) => (
               <motion.button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
                 className={`text-sm font-light tracking-wider transition-colors relative group ${
-                  activeSection === item.id
-                    ? "text-white"
-                    : "text-gray-400 hover:text-white"
+                  activeSection === item.id ? "text-white" : "text-gray-400 hover:text-white"
                 }`}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -88,27 +95,24 @@ export function Navbar() {
                 {item.label}
                 <span
                   className={`absolute bottom-0 left-0 h-px bg-white transition-all duration-300 ${
-                    activeSection === item.id
-                      ? "w-full"
-                      : "w-0 group-hover:w-full"
+                    activeSection === item.id ? "w-full" : "w-0 group-hover:w-full"
                   }`}
                 ></span>
               </motion.button>
             ))}
           </div>
 
-          {/* Right - Contact + Quote */}
+          {/* Contact / Quote */}
           <div className="hidden md:flex items-center flex-shrink-0">
-          <motion.button
-                    
-                     className="w-4 h-4 border border-gray-400 flex items-center justify-center hover:border-gray-800 transition-colors"
-                     initial={{ opacity: 0, x: 20 }}
-                     animate={{ opacity: 1, x: 0 }}
-                     transition={{ duration: 0.6 }}
-                   >
-                     <div className="w-2 h-2 bg-gray-800"></div>
-                   </motion.button>
-       
+            <motion.button
+              className="w-4 h-4 border border-gray-400 flex items-center justify-center hover:border-gray-800 transition-colors"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="w-2 h-2 bg-gray-800"></div>
+            </motion.button>
+
             <Button
               onClick={() => setIsModalOpen(true)}
               className="text-gray-400 hover:text-white text-sm font-semibold px-4 py-2"
@@ -122,15 +126,11 @@ export function Navbar() {
             className="md:hidden p-2 text-gray-400"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
+            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
-        {/* ✅ Mobile Menu */}
+        {/* Mobile Menu */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
@@ -146,9 +146,7 @@ export function Navbar() {
                     key={item.id}
                     onClick={() => handleNavClick(item.id)}
                     className={`text-left text-sm font-light tracking-wider ${
-                      activeSection === item.id
-                        ? "text-white"
-                        : "text-gray-400 hover:text-white"
+                      activeSection === item.id ? "text-white" : "text-gray-400 hover:text-white"
                     }`}
                   >
                     {item.label}
@@ -163,14 +161,13 @@ export function Navbar() {
                 >
                   Get Free Quote
                 </button>
-               
               </div>
             </motion.div>
           )}
         </AnimatePresence>
       </nav>
 
-      {/* ✅ MODAL */}
+      {/* Modal */}
       <AnimatePresence>
         {isModalOpen && (
           <motion.div
@@ -191,9 +188,7 @@ export function Navbar() {
               >
                 <X className="w-5 h-5" />
               </button>
-              <h2 className="text-lg font-semibold mb-4 text-center">
-                Get Free Quote
-              </h2>
+              <h2 className="text-lg font-semibold mb-4 text-center">Get Free Quote</h2>
               <form
                 onSubmit={(e) => {
                   e.preventDefault();

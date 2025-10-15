@@ -5,8 +5,33 @@ import { useToast } from "@/components/ui/use-toast";
 import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Play, Pause } from "lucide-react";
 
 const projects = [
-  {
+   {
     id: 1,
+    date: "FEB 15, 2025",
+    title: "THE MINIMAL ABODE",
+    description: "A calm 3BHK retreat with neutral tones and handcrafted wooden details.",
+    images: [
+      "https://res.cloudinary.com/do5dyebav/image/upload/v1760543120/VOF/4/FLora_s_Hillside_Villa_35_page-0004_o5a8z8.jpg",
+      "https://res.cloudinary.com/do5dyebav/image/upload/v1760543119/VOF/4/FLora_s_Hillside_Villa_35_page-0008_zhh8jv.jpg",
+      "https://res.cloudinary.com/do5dyebav/image/upload/v1760543126/VOF/4/FLora_s_Hillside_Villa_35_page-0005_ysykrc.jpg",
+      "https://res.cloudinary.com/do5dyebav/image/upload/v1760543130/VOF/4/FLora_s_Hillside_Villa_35_page-0013_ucytbj.jpg",
+      "https://res.cloudinary.com/do5dyebav/image/upload/v1760543133/VOF/4/FLora_s_Hillside_Villa_35_page-0016_ruvoo2.jpg",
+      "https://res.cloudinary.com/do5dyebav/image/upload/v1760543138/VOF/4/FLora_s_Hillside_Villa_35_page-0015_sjpq3o.jpg",
+      "https://res.cloudinary.com/do5dyebav/image/upload/v1760543145/VOF/4/FLora_s_Hillside_Villa_35_page-0021_lxbqlg.jpg",
+      "https://res.cloudinary.com/do5dyebav/image/upload/v1760543145/VOF/4/FLora_s_Hillside_Villa_35_page-0023_cmxcrr.jpg",
+      "https://res.cloudinary.com/do5dyebav/image/upload/v1760543153/VOF/4/FLora_s_Hillside_Villa_35_page-0024_mo2ujv.jpg",
+      "https://res.cloudinary.com/do5dyebav/image/upload/v1760543153/VOF/4/FLora_s_Hillside_Villa_35_page-0029_jmsnis.jpg",
+      "https://res.cloudinary.com/do5dyebav/image/upload/v1760543153/VOF/4/FLora_s_Hillside_Villa_35_page-0028_vy8bk6.jpg",
+      "https://res.cloudinary.com/do5dyebav/image/upload/v1760543160/VOF/4/FLora_s_Hillside_Villa_35_page-0031_ndgzz4.jpg",
+      "https://res.cloudinary.com/do5dyebav/image/upload/v1760543155/VOF/4/FLora_s_Hillside_Villa_35_page-0025_ssvpvk.jpg",
+      "https://res.cloudinary.com/do5dyebav/image/upload/v1760543152/VOF/4/FLora_s_Hillside_Villa_35_page-0026_zyiho2.jpg",
+      "https://res.cloudinary.com/do5dyebav/image/upload/v1760543131/VOF/4/FLora_s_Hillside_Villa_35_page-0011_ei33o6.jpg",
+      "https://res.cloudinary.com/do5dyebav/image/upload/v1760543126/VOF/4/FLora_s_Hillside_Villa_35_page-0010_o01bvc.jpg",
+      "https://res.cloudinary.com/do5dyebav/image/upload/v1760543123/VOF/4/FLora_s_Hillside_Villa_35_page-0009_jbzw9e.jpg",
+    ],
+  },
+  {
+    id: 2,
     date: "SEPTEMBER 15, 2025",
     title: "THE MINIMAL ABODE",
     description: "A calm 3BHK retreat with neutral tones and handcrafted wooden details.",
@@ -31,33 +56,6 @@ const projects = [
       "https://res.cloudinary.com/do5dyebav/image/upload/v1760440678/VOF/Mr.Nisanth_Project.pdf-image-017_el401b.jpg",
       "https://res.cloudinary.com/do5dyebav/image/upload/v1760440678/VOF/Mr.Nisanth_Project.pdf-image-016_kkw6dv.jpg",
       "https://res.cloudinary.com/do5dyebav/image/upload/v1760440678/VOF/Mr.Nisanth_Project.pdf-image-018_eodlol.jpg",
-    ],
-  },
-  {
-    id: 2,
-    date: "AUGUST 30, 2025",
-    title: "LUXE MODERN LIVING ROOM",
-    description: "A blend of marble, brass, and warm light for cozy luxury.",
-    images: [
-      "https://res.cloudinary.com/do5dyebav/image/upload/v1760441921/VOF/1/Mr.vamsi_Project.pdf-image-003_ruzfwc.jpg",
-      "https://res.cloudinary.com/do5dyebav/image/upload/v1760441920/VOF/1/Mr.vamsi_Project.pdf-image-000_blcyev.jpg",
-     "https://res.cloudinary.com/do5dyebav/image/upload/v1760441921/VOF/1/Mr.vamsi_Project.pdf-image-001_vpej3o.jpg",
-     "https://res.cloudinary.com/do5dyebav/image/upload/v1760441922/VOF/1/Mr.vamsi_Project.pdf-image-004_btepm6.jpg",
-     "https://res.cloudinary.com/do5dyebav/image/upload/v1760441924/VOF/1/Mr.vamsi_Project.pdf-image-005_vaeefm.jpg",
-     "https://res.cloudinary.com/do5dyebav/image/upload/v1760441925/VOF/1/Mr.vamsi_Project.pdf-image-006_ue58gm.jpg",
-     "https://res.cloudinary.com/do5dyebav/image/upload/v1760441925/VOF/1/Mr.vamsi_Project.pdf-image-007_skz0i4.jpg",
-     "https://res.cloudinary.com/do5dyebav/image/upload/v1760441926/VOF/1/Mr.vamsi_Project.pdf-image-008_zsubxw.jpg",
-     "https://res.cloudinary.com/do5dyebav/image/upload/v1760441928/VOF/1/Mr.vamsi_Project.pdf-image-009_rbwhqa.jpg",
-     "https://res.cloudinary.com/do5dyebav/image/upload/v1760441928/VOF/1/Mr.vamsi_Project.pdf-image-010_rkr7bx.jpg",
-     "https://res.cloudinary.com/do5dyebav/image/upload/v1760441929/VOF/1/Mr.vamsi_Project.pdf-image-011_hbgeav.jpg",
-     "https://res.cloudinary.com/do5dyebav/image/upload/v1760441931/VOF/1/Mr.vamsi_Project.pdf-image-012_ciliid.jpg",
-     "https://res.cloudinary.com/do5dyebav/image/upload/v1760441932/VOF/1/Mr.vamsi_Project.pdf-image-013_qyw0bh.jpg",
-     "https://res.cloudinary.com/do5dyebav/image/upload/v1760441933/VOF/1/Mr.vamsi_Project.pdf-image-014_nhuzat.jpg",
-     "https://res.cloudinary.com/do5dyebav/image/upload/v1760441936/VOF/1/Mr.vamsi_Project.pdf-image-015_akpxve.jpg",
-     "https://res.cloudinary.com/do5dyebav/image/upload/v1760441936/VOF/1/Mr.vamsi_Project.pdf-image-016_tvqieo.jpg",
-     "https://res.cloudinary.com/do5dyebav/image/upload/v1760441939/VOF/1/Mr.vamsi_Project.pdf-image-018_hoxkan.jpg",
-     "https://res.cloudinary.com/do5dyebav/image/upload/v1760441940/VOF/1/Mr.vamsi_Project.pdf-image-019_f8gxph.jpg",
-     "https://res.cloudinary.com/do5dyebav/image/upload/v1760441938/VOF/1/Mr.vamsi_Project.pdf-image-017_j2cnxg.jpg",
     ],
   },
   {
@@ -197,7 +195,7 @@ export function PortfolioSection() {
               >
                 <div className="flex-1 overflow-hidden">
                    {/* Date */}
-              <div className="flex items-center gap-3 mb-5">
+              <div className="flex items-center gap-3 mb-10">
                 <div className="w-12 h-[1px] bg-gray-800"></div>
                 <p className="text-[11px] tracking-[0.2em] font-semibold text-gray-800">
                   {project.date}
@@ -225,7 +223,7 @@ export function PortfolioSection() {
                   </p>
                   <Button
                     variant="outline"
-                    className="border-black text-gray-800 hover:bg-black hover:text-white rounded-none px-6 py-4 text-xs w-[200px]"
+                    className="border-black bold text-gray-800 hover:bg-black hover:text-white rounded-none px-6 py-4 text-xs w-[200px]"
                     onClick={() => handleOpenModal(project)}
                   >
                     VIEW PROJECT
