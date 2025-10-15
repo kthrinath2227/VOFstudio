@@ -56,7 +56,7 @@ export function Navbar() {
           {/* Left - Logo */}
          <motion.div
   className="text-2xl font-light tracking-wider cursor-pointer flex-shrink-0 text-center"
-  style={{ fontFamily: 'CyrillicBodoniCondensed' }}
+ style={{ fontFamily: "'CyrillicBodoniCondensed', serif" }}
   initial={{ opacity: 0, x: -20 }}
   animate={{ opacity: 1, x: 0 }}
   transition={{ duration: 0.6 }}

@@ -10,6 +10,7 @@ import { PortfolioSection } from '@/components/sections/PortfolioSection';
 import { ContactSection } from '@/components/sections/ContactSection';
 import { Footer } from '@/components/common/Footer';
 
+
 function App() {
   const [currentSection, setCurrentSection] = useState(0);
 
@@ -43,11 +44,38 @@ function App() {
   return (
     <>
       <Helmet>
-        <title>VOF Studio - Professional Photography & Photoshoot Services</title>
-        <meta name="description" content="Professional photography studio specializing in creative photoshoots, architectural photography, and visual storytelling. Bringing your vision to life through innovative photography." />
-        <meta property="og:title" content="VOF Studio - Professional Photography & Photoshoot Services" />
-        <meta property="og:description" content="Professional photography studio specializing in creative photoshoots, architectural photography, and visual storytelling. Bringing your vision to life through innovative photography." />
-      </Helmet>
+  <title>VOF Design Studio - Interior Design, Architecture & Custom Furniture</title>
+  <meta 
+    name="description" 
+    content="VOF Design Studio specializes in modern interior design, innovative architecture, and bespoke furniture. Transforming spaces into elegant, functional, and timeless designs tailored to your lifestyle." 
+  />
+  
+  {/* Open Graph / Facebook */}
+  <meta 
+    property="og:title" 
+    content="VOF Design Studio - Interior Design, Architecture & Custom Furniture" 
+  />
+  <meta 
+    property="og:description" 
+    content="Explore VOF Design Studio’s expertise in interiors, architecture, and furniture design. We create luxurious, functional spaces that reflect your personality and vision." 
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://vofdesignstudio.com/" />
+  <meta property="og:image" content="https://yourwebsiteurl.com/preview-image.jpg" />
+
+  {/* Twitter Card */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta 
+    name="twitter:title" 
+    content="VOF Design Studio - Interior Design, Architecture & Custom Furniture" 
+  />
+  <meta 
+    name="twitter:description" 
+    content="Modern interiors, innovative architecture, and elegant furniture — all designed by VOF Design Studio to elevate your space." 
+  />
+  <meta name="twitter:image" content="https://yourwebsiteurl.com/preview-image.jpg" />
+</Helmet>
+
 
       <div className="min-h-screen bg-gray-50 text-gray-800 overflow-x-hidden">
   <Navbar />

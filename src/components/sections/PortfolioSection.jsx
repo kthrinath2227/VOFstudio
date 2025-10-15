@@ -163,16 +163,6 @@ export function PortfolioSection() {
     setZoom(1);
   };
 
-  // const togglePlay = () => setIsPlaying(!isPlaying);
-
-  // useEffect(() => {
-  //   if (!isPlaying || !selectedProject) return;
-  //   const timer = setInterval(() => {
-  //     handleNext();
-  //   }, 4000);
-  //   return () => clearInterval(timer);
-  // }, [isPlaying, selectedProject]);
-
   return (
     <section id="portfolio" className="bg-white text-gray-900 md:ml-24">
       <div className="max-w-7xl mx-auto px-10 py-24">
@@ -198,13 +188,6 @@ export function PortfolioSection() {
               viewport={{ once: true }}
               className="flex flex-col gap-8"
             >
-              {/* Date */}
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-[1px] bg-gray-800"></div>
-                <p className="text-[11px] tracking-[0.2em] font-semibold text-gray-800">
-                  {project.date}
-                </p>
-              </div>
 
               {/* Image + Text */}
               <div
@@ -213,12 +196,24 @@ export function PortfolioSection() {
                 } gap-12 md:items-center`}
               >
                 <div className="flex-1 overflow-hidden">
-                  <motion.img
-                    whileHover={{ scale: 1.02 }}
-                    src={project.images[0]}
-                    alt={project.title}
-                    className="w-full h-[400px] object-cover"
-                  />
+                   {/* Date */}
+              <div className="flex items-center gap-3 mb-5">
+                <div className="w-12 h-[1px] bg-gray-800"></div>
+                <p className="text-[11px] tracking-[0.2em] font-semibold text-gray-800">
+                  {project.date}
+                </p>
+              </div>
+
+                 <motion.img
+  whileHover={{ scale: 1.02 }}
+  src={project.images[0]}
+  alt={project.title}
+  className="w-full h-[400px] md:h-[400px] sm:h-[300px] object-cover object-center md:object-cover rounded-sm"
+  style={{
+    height: "50vh",
+    maxHeight: "400px",
+  }}
+/>
                 </div>
 
                 <div className="flex-1 flex flex-col justify-center px-2">

@@ -3,17 +3,13 @@
 	"type": "module",
 	"version": "0.0.0",
 	"private": true,
-	"homepage": "https://kthrinath2227.github.io/VOFstudio/"
-
-,
-
+	"homepage": "https://kthrinath2227.github.io/VOFstudio/",
 	"scripts": {
-  "dev": "vite",
-  "build": "vite build",
-  "preview": "vite preview",
-  "deploy": "gh-pages -d dist -r https://github.com/kthrinath2227/VOFstudio.git"
-},
-
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview",
+		"deploy": "gh-pages -d dist -r https://github.com/kthrinath2227/VOFstudio.git"
+	},
 	"dependencies": {
 		"@radix-ui/react-alert-dialog": "^1.0.5",
 		"@radix-ui/react-avatar": "^1.0.3",
@@ -32,8 +28,10 @@
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-helmet": "^6.1.0",
+		"react-tsparticles": "^2.12.2",
 		"tailwind-merge": "^1.14.0",
-		"tailwindcss-animate": "^1.0.7"
+		"tailwindcss-animate": "^1.0.7",
+		"tsparticles": "^3.9.1"
 	},
 	"devDependencies": {
 		"@babel/generator": "^7.27.0",

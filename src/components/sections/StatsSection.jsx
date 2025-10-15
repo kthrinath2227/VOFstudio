@@ -52,25 +52,34 @@ export function StatsSection() {
 
           {/* Left Content */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center lg:text-left"
-          >
-            <div className="text-6xl md:text-8xl font-bold text-gray-600 mb-4 hidden md:block">
-              02
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-2">
-              SOME INTERESTING
-            </h2>
-            <div className="w-12 sm:w-16 h-1 bg-white mx-auto lg:mx-0 mb-3"></div>
-            <h3 className="text-3xl sm:text-4xl font-bold mb-8">FACTS</h3>
-          </motion.div>
+  initial={{ opacity: 0, x: -50 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.8 }}
+  viewport={{ once: true }}
+  className="text-center lg:text-left relative"
+>
+  {/* Number with line & dot */}
+  <div className="text-6xl md:text-8xl font-bold text-gray-600 mb-4 hidden md:block relative inline-block">
+    02
+    {/* Line + dot perfectly across 02 */}
+    <div className="absolute top-1/2 left-0 flex items-center z-20">
+      <div className="h-px bg-gray-400 w-[120px]"></div>
+      <div className="h-2 w-2 bg-white rounded-full ml-1"></div>
+    </div>
+  </div>
+
+  {/* Headings below */}
+  <h2 className="text-3xl sm:text-3xl md:text-5xl font-light mb-2">
+    SOME INTERESTING
+  </h2>
+  <div className="w-12 sm:w-16 h-1 bg-white mx-auto lg:mx-0 mb-3"></div>
+  <h3 className="text-3xl sm:text-4xl font-bold mb-8">FACTS</h3>
+</motion.div>
+
 
           {/* Right Stats with rolling effect */}
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-1 text-center"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -78,7 +87,7 @@ export function StatsSection() {
           >
             {stats.map((stat, i) => (
               <div key={i}>
-                <div className="text-4xl sm:text-5xl md:text-6xl font-light mb-2 tabular-nums">
+                <div className="text-4xl sm:text-5xl md:text-6xl font-bold mb-2 tabular-nums">
                   {displayNumbers[i].toLocaleString()}
                 </div>
                 <p className="text-gray-400 text-sm sm:text-base">
