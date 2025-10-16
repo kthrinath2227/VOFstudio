@@ -57,7 +57,7 @@ export function AboutSection() {
 
           <Button
             variant="outline"
-            className="border-gray-800 bold text-black hover:bg-black hover:text-white"
+            className="border-gray-800 border-black font-extrabold uppercase tracking-wide text-black hover:bg-black hover:text-white"
             onClick={handleButtonClick}
           >
             View Our Portfolio

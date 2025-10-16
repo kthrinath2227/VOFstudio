@@ -2,16 +2,20 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom"; // ✅ Added for routing
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const navigate = useNavigate(); // ✅ Initialize navigate
+
   const navItems = [
     { label: "HOME", id: "hero" },
     { label: "PORTFOLIO", id: "portfolio" },
     { label: "VIDEOS", id: "youtube" },
+    { label: "SERVICES", id: "services" },
     { label: "ABOUT US", id: "about" },
     { label: "CONTACT", id: "contact" },
   ];
@@ -19,20 +23,36 @@ export function Navbar() {
   // ✅ Handle navigation click
   const handleNavClick = (id) => {
     if (id === "youtube") {
-      window.open("https://www.youtube.com/", "_blank"); // Open YouTube
+      window.open("https://www.youtube.com/", "_blank");
       setIsMobileMenuOpen(false);
       return;
     }
 
+    if (id === "services") {
+      navigate("/services"); // ✅ Navigate to Services page
+      setIsMobileMenuOpen(false);
+      return;
+    }
+
+    // Scroll to section (for homepage)
     const section = document.getElementById(id);
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
       setActiveSection(id);
+    } else {
+      navigate("/"); // ✅ Go to home if section not found
+      setTimeout(() => {
+        const homeSection = document.getElementById(id);
+        if (homeSection) {
+          homeSection.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 300);
     }
+
     setIsMobileMenuOpen(false);
   };
 
-  // ✅ Handle scroll to highlight active section
+  // ✅ Highlight active section on scroll
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY + window.innerHeight / 2;
@@ -68,25 +88,32 @@ export function Navbar() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            onClick={() => handleNavClick("hero")}
+            onClick={() => navigate("/")} // ✅ Go home
           >
             <span
-              style={{ transform: "scaleY(1.4) scaleX(1.1)", display: "inline-block" }}
+              style={{
+                transform: "scaleY(1.4) scaleX(1.1)",
+                display: "inline-block",
+              }}
               className="text-white block"
             >
               VOF
             </span>
-            <span className="text-white text-[8px] block -mt-3">DESIGN STUDIO</span>
+            <span className="text-white text-[8px] block -mt-3">
+              DESIGN STUDIO
+            </span>
           </motion.div>
 
-          {/* Navigation Tabs */}
+          {/* Desktop Navigation */}
           <div className="hidden md:flex flex-1 justify-center space-x-8">
             {navItems.map((item, index) => (
               <motion.button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
                 className={`text-sm font-light tracking-wider transition-colors relative group ${
-                  activeSection === item.id ? "text-white" : "text-gray-400 hover:text-white"
+                  activeSection === item.id
+                    ? "text-white"
+                    : "text-gray-400 hover:text-white"
                 }`}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -95,14 +122,16 @@ export function Navbar() {
                 {item.label}
                 <span
                   className={`absolute bottom-0 left-0 h-px bg-white transition-all duration-300 ${
-                    activeSection === item.id ? "w-full" : "w-0 group-hover:w-full"
+                    activeSection === item.id
+                      ? "w-full"
+                      : "w-0 group-hover:w-full"
                   }`}
                 ></span>
               </motion.button>
             ))}
           </div>
 
-          {/* Contact / Quote */}
+          {/* Contact / Quote Button */}
           <div className="hidden md:flex items-center flex-shrink-0">
             <motion.button
               className="w-4 h-4 border border-gray-400 flex items-center justify-center hover:border-gray-800 transition-colors"
@@ -126,7 +155,11 @@ export function Navbar() {
             className="md:hidden p-2 text-gray-400"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </button>
         </div>
 
@@ -146,7 +179,9 @@ export function Navbar() {
                     key={item.id}
                     onClick={() => handleNavClick(item.id)}
                     className={`text-left text-sm font-light tracking-wider ${
-                      activeSection === item.id ? "text-white" : "text-gray-400 hover:text-white"
+                      activeSection === item.id
+                        ? "text-white"
+                        : "text-gray-400 hover:text-white"
                     }`}
                   >
                     {item.label}
@@ -188,7 +223,9 @@ export function Navbar() {
               >
                 <X className="w-5 h-5" />
               </button>
-              <h2 className="text-lg font-semibold mb-4 text-center">Get Free Quote</h2>
+              <h2 className="text-lg font-semibold mb-4 text-center">
+                Get Free Quote
+              </h2>
               <form
                 onSubmit={(e) => {
                   e.preventDefault();

@@ -160,6 +160,18 @@ export function PortfolioSection() {
     );
     setZoom(1);
   };
+  // Auto-play functionality
+useEffect(() => {
+  if (isPlaying && selectedProject) {
+    const interval = setInterval(() => {
+      setCurrentIndex(
+        (prev) => (prev + 1) % selectedProject.images.length
+      );
+    }, 3000); // change every 3s
+    return () => clearInterval(interval);
+  }
+}, [isPlaying, selectedProject]);
+
 
   return (
     <section id="portfolio" className="bg-white text-gray-900 md:ml-24">
@@ -222,12 +234,13 @@ export function PortfolioSection() {
                     {project.description}
                   </p>
                   <Button
-                    variant="outline"
-                    className="border-black bold text-gray-800 hover:bg-black hover:text-white rounded-none px-6 py-4 text-xs w-[200px]"
-                    onClick={() => handleOpenModal(project)}
-                  >
-                    VIEW PROJECT
-                  </Button>
+  variant="outline"
+  className="border-black font-extrabold uppercase tracking-wide text-black hover:bg-black hover:text-white rounded-none px-6 py-4 text-xs w-[200px]"
+  onClick={() => handleOpenModal(project)}
+>
+  VIEW PROJECT
+</Button>
+
                 </div>
               </div>
             </motion.div>
@@ -235,69 +248,135 @@ export function PortfolioSection() {
         </div>
 
         {/* --- Modal --- */}
-        <AnimatePresence>
-          {selectedProject && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/80 flex flex-col items-center justify-center z-50 px-4"
-            >
-              {/* Close Button */}
-              <button
-                className="absolute top-6 right-6 text-white hover:opacity-70"
-                onClick={handleCloseModal}
-              >
-                <X size={28} />
-              </button>
+       <AnimatePresence>
+  {selectedProject && (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 bg-black/90 flex flex-col items-center justify-center z-[9999]"
+    >
+      {/* Click outside to close */}
+      <div className="absolute inset-0" onClick={handleCloseModal}></div>
 
-              {/* Image Container */}
-              <div className="relative w-full max-w-4xl flex flex-col items-center">
-                <motion.img
-                  key={currentIndex}
+      {/* Content */}
+      <div
+        className="
+          relative 
+          w-full 
+          h-full 
+          flex 
+          flex-col 
+          md:flex-row 
+          items-center 
+          justify-center 
+          overflow-hidden
+          px-4 md:px-8
+          pointer-events-none
+        "
+      >
+        {/* --- Close + Controls (Top-Right) --- */}
+        <div className="absolute top-6 right-6 flex flex-col items-end gap-3 z-[10000] pointer-events-auto">
+          {/* Close Button */}
+          <button
+            className="text-white hover:opacity-70 transition"
+            onClick={handleCloseModal}
+          >
+            <X size={32} />
+          </button>
+
+          {/* Zoom / Count / Play */}
+          <div className="flex items-center gap-4 text-white">
+            <button
+              onClick={() => setZoom((z) => Math.min(z + 0.2, 2))}
+              className="hover:scale-110 transition"
+            >
+              <ZoomIn />
+            </button>
+            <button
+              onClick={() => setZoom((z) => Math.max(z - 0.2, 1))}
+              className="hover:scale-110 transition"
+            >
+              <ZoomOut />
+            </button>
+            <button
+              onClick={() => setIsPlaying((p) => !p)}
+              className="hover:scale-110 transition"
+            >
+              {isPlaying ? <Pause /> : <Play />}
+            </button>
+            <span className="text-sm opacity-80">
+              {currentIndex + 1} / {selectedProject.images.length}
+            </span>
+          </div>
+        </div>
+
+        {/* --- Image Section --- */}
+        <div className="relative flex flex-col md:flex-row items-center justify-center gap-4 pointer-events-auto w-full">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -100 }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+              className="w-full flex justify-center items-center gap-4"
+            >
+              {/* Dual layout if image doesn’t fill */}
+              {selectedProject.images.length > 1 &&
+              selectedProject.images[currentIndex]?.includes("portrait") ? (
+                <>
+                  <img
+                    src={selectedProject.images[currentIndex]}
+                    alt={selectedProject.title}
+                    style={{ transform: `scale(${zoom})` }}
+                    className="max-h-[80vh] object-contain rounded-md transition-transform duration-300 w-full md:w-1/2"
+                  />
+                  <img
+                    src={
+                      selectedProject.images[
+                        (currentIndex + 1) % selectedProject.images.length
+                      ]
+                    }
+                    alt={selectedProject.title}
+                    style={{ transform: `scale(${zoom})` }}
+                    className="max-h-[80vh] object-contain rounded-md transition-transform duration-300 w-full md:w-1/2"
+                  />
+                </>
+              ) : (
+                <img
                   src={selectedProject.images[currentIndex]}
                   alt={selectedProject.title}
                   style={{ transform: `scale(${zoom})` }}
-                  className="max-h-[80vh] object-contain rounded-md transition-transform duration-300"
+                  className="max-h-[90vh] object-contain rounded-md transition-transform duration-300"
                 />
-
-                {/* Controls */}
-                <div className="absolute inset-y-0 left-0 flex items-center">
-                  <button
-                    onClick={handlePrev}
-                    className="bg-black/40 hover:bg-black/70 text-white p-3 rounded-full ml-4"
-                  >
-                    <ChevronLeft size={28} />
-                  </button>
-                </div>
-                <div className="absolute inset-y-0 right-0 flex items-center">
-                  <button
-                    onClick={handleNext}
-                    className="bg-black/40 hover:bg-black/70 text-white p-3 rounded-full mr-4"
-                  >
-                    <ChevronRight size={28} />
-                  </button>
-                </div>
-              </div>
-
-              {/* Bottom Controls */}
-              <div className="flex items-center gap-4 mt-6 text-white">
-                <button onClick={() => setZoom((z) => Math.min(z + 0.2, 2))}>
-                  <ZoomIn />
-                </button>
-                <button onClick={() => setZoom((z) => Math.max(z - 0.2, 1))}>
-                  <ZoomOut />
-                </button>
-                {/* <button onClick={togglePlay}>
-                  {isPlaying ? <Pause /> : <Play />}
-                </button> */}
-                <span className="text-sm opacity-70">
-                  {currentIndex + 1} / {selectedProject.images.length}
-                </span>
-              </div>
+              )}
             </motion.div>
-          )}
-        </AnimatePresence>
+          </AnimatePresence>
+
+          {/* --- Arrows --- */}
+          <div className="absolute inset-y-0 left-0 hidden md:flex items-center">
+            <button
+              onClick={handlePrev}
+              className="bg-black/40 hover:bg-black/70 text-white p-3 rounded-full ml-4 transition"
+            >
+              <ChevronLeft size={32} />
+            </button>
+          </div>
+          <div className="absolute inset-y-0 right-0 hidden md:flex items-center">
+            <button
+              onClick={handleNext}
+              className="bg-black/40 hover:bg-black/70 text-white p-3 rounded-full mr-4 transition"
+            >
+              <ChevronRight size={32} />
+            </button>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  )}
+</AnimatePresence>
+
       </div>
     </section>
   );
