@@ -11,7 +11,7 @@ export function HeroSection({ scrollToSection }) {
       {/* Background Image with slow cinematic zoom */}
       <motion.img
         alt="Modern architectural house with pool at night"
-        src="https://res.cloudinary.com/do5dyebav/image/upload/v1761645447/VOF/home-page/HD_l9jbzz.jpg"
+        src="https://res.cloudinary.com/do5dyebav/image/upload/v1761646718/VOF/home-page/HD_ugyxvo.jpg"
         className="
           absolute inset-0 w-full h-full 
           object-cover md:object-center object-[50%_30%]
@@ -27,7 +27,7 @@ export function HeroSection({ scrollToSection }) {
       />
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-gray-900/40"></div>
+      
 
       {/* Text Content */}
       <div className="relative z-10 text-center text-white">
@@ -42,7 +42,7 @@ export function HeroSection({ scrollToSection }) {
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.2 }}
       >
-        <ChevronDown size={32} className="animate-bounce" />
+        <ChevronDown size={32} className="animate-bounce text-black" />
       </motion.button>
     </section>
   );
