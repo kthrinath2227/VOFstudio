@@ -11,7 +11,7 @@ export function HeroSection({ scrollToSection }) {
       {/* Background Image with slow cinematic zoom */}
       <motion.img
         alt="Modern architectural house with pool at night"
-        src="https://res.cloudinary.com/do5dyebav/image/upload/v1760543120/VOF/4/FLora_s_Hillside_Villa_35_page-0004_o5a8z8.jpg"
+        src="https://res.cloudinary.com/do5dyebav/image/upload/v1761645447/VOF/home-page/HD_l9jbzz.jpg"
         className="
           absolute inset-0 w-full h-full 
           object-cover md:object-center object-[50%_30%]
